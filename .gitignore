@@ -8,8 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 config.py
-chromedriver
-token.pickle
+chromedriver*
+token.pickle*
+.vscode
+Quote/
 .Python
 build/
 develop-eggs/
