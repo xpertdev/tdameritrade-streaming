@@ -1,12 +1,14 @@
 from tda.auth import easy_client
 from tda.client import Client
 from tda.streaming import StreamClient
+from tenacity import retry, stop_after_attempt
 
 import asyncio
 import json
 import config
 import os
 import file_helper as fileHelper
+
 
 client = easy_client(
         api_key=config.API_KEY,
@@ -33,6 +35,10 @@ def write_to_file(msg, fileType):
     fileHelper.write_file(msg, file_path)
     print(file_name)
 
+#@retry(stop=stop_after_attempt(10))
+async def stream_handle_message():
+    await stream_client.handle_message()
+
 async def read_stream():
     await stream_client.login()
     await stream_client.quality_of_service(StreamClient.QOSLevel.DELAYED)
@@ -50,7 +56,8 @@ async def read_stream():
     await stream_client.timesale_equity_subs([config.SYMBOLS])
 
     while True:
-        await stream_client.handle_message()
+        await stream_handle_message()
+        #await stream_client.handle_message()
 
 asyncio.run(read_stream())
 #asyncio.get_event_loop().run_until_complete(read_stream())
