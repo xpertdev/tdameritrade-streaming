@@ -11,6 +11,7 @@ config.py
 chromedriver*
 token.pickle*
 .vscode
+.env
 Quote/
 .Python
 build/

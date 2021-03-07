@@ -1,5 +1,5 @@
 #!/bin/sh
 
-if ! pgrep -f "python stream.py"; then
-	python stream.py &
+if ! pgrep -f "python forever.py stream.py"; then
+	python forever.py stream.py &
 fi
