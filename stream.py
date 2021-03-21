@@ -18,13 +18,13 @@ client = easy_client(
 stream_client = StreamClient(client, account_id=config.ACCOUNT_ID)
 
 def level1_order_book_handler(msg):
-    write_to_azure(msg, fileHelper.FileType.Level1)
+    write_to_file(msg, fileHelper.FileType.Level1)
 
 def nasdaq_order_book_handler(msg):
-    write_to_azure(msg, fileHelper.FileType.Level2)
+    write_to_file(msg, fileHelper.FileType.Level2)
 
 def timesale_order_book_handler(msg):
-    write_to_azure(msg, fileHelper.FileType.TimeSale)
+    write_to_file(msg, fileHelper.FileType.TimeSale)
 
 def write_to_file(msg, fileType):
     save_file = config.QUOTE_STORE
