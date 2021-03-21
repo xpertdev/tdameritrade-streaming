@@ -7,3 +7,9 @@ CHROMEDRIVER_PATH = '/Users/xpertdev/Projects/tdameritrade-streaming/chromedrive
 CHROME_BINARY = ''
 QUOTE_PATH = '/Users/xpertdev/Projects/tdameritrade-streaming/Quote/'
 SYMBOLS = 'VTI,QQQ,VUG,TQQQ,UPRO'
+
+QUOTE_STORE = 'Azure'
+
+#Azure storage
+STORAGE_ACCOUNT_NAME = 'STORAGE_ACCOUNT_NAME'
+STORAGE_ACCOUNT_KEY  = 'Storage-key'

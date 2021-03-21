@@ -1,13 +1,14 @@
 from tda.auth import easy_client
 from tda.client import Client
 from tda.streaming import StreamClient
-from tenacity import retry, stop_after_attempt
+#from tenacity import retry, stop_after_attempt
 
 import asyncio
 import json
 import config
 import os
 import file_helper as fileHelper
+import datalake_helper as datalakeHelper
 
 
 client = easy_client(
@@ -17,15 +18,24 @@ client = easy_client(
 stream_client = StreamClient(client, account_id=config.ACCOUNT_ID)
 
 def level1_order_book_handler(msg):
-    write_to_file(msg, fileHelper.FileType.Level1)
+    write_to_azure(msg, fileHelper.FileType.Level1)
 
 def nasdaq_order_book_handler(msg):
-    write_to_file(msg, fileHelper.FileType.Level2)
+    write_to_azure(msg, fileHelper.FileType.Level2)
 
-def timesale_order_book_handler(msg)    :
-    write_to_file(msg, fileHelper.FileType.TimeSale)
+def timesale_order_book_handler(msg):
+    write_to_azure(msg, fileHelper.FileType.TimeSale)
 
 def write_to_file(msg, fileType):
+    save_file = config.QUOTE_STORE
+
+    if save_file == "Azure":
+        write_to_azure(msg, fileType)
+    else:
+        write_to_local_disk(msg, fileType)
+
+
+def write_to_local_disk(msg, fileType):
     fileType = fileHelper.FileType(fileType)
     file_name = fileHelper.get_filename(fileType)
     folder_name = os.path.join(config.QUOTE_PATH, fileType.name)
@@ -34,6 +44,14 @@ def write_to_file(msg, fileType):
     fileHelper.create_folder(folder_name)
     fileHelper.write_file(msg, file_path)
     print(file_name)
+
+def write_to_azure(msg, fileType):
+    fileType = fileHelper.FileType(fileType)
+    file_name = fileHelper.get_filename(fileType)
+    folder_name = fileType.name
+
+    datalakeHelper.write_file(msg, folder_name, file_name)
+    print(file_name)   
 
 #@retry(stop=stop_after_attempt(10))
 async def stream_handle_message():
