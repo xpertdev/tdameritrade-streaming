@@ -1,3 +1,4 @@
 tda-api
 selenium
-tenacity
+#tenacity
+azure-storage-file-datalake
