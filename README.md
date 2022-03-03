@@ -1,6 +1,6 @@
 # tdameritrade-streaming
 
-Stream order book data using TD Ameritrade API. Supports Level 1, Level 2 and Time of Sale. Save the json either to your local disk or Azure Data Lake Storage Gen2. I have this script running 24/7 on a  Microsoft Azure VM for a few months now.
+Stream order book data using TD Ameritrade API. Supports Level 1, Level 2 and Time of Sale. Save quotes either to your local disk or Azure Data Lake Storage Gen2. I have this script running 24/7 on a  Microsoft Azure VM for a few months now.
 
 ## Instructions
 
