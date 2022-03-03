@@ -1,6 +1,6 @@
 # tdameritrade-streaming
 
-Streaming order book data from TD Ameritrade API. Save json either to local disk or Azure Data Lake Storage Gen2. I have this script running 24/7 on a  Microsoft Azure VM for a few months now.
+Stream order book data using TD Ameritrade API. Supports Level 1, Level 2 and Time of Sale. Save the json either to your local disk or Azure Data Lake Storage Gen2. I have this script running 24/7 on a  Microsoft Azure VM for a few months now.
 
 ## Instructions
 
@@ -16,15 +16,15 @@ Streaming order book data from TD Ameritrade API. Save json either to local disk
 ```
 
 ## Sample Data
-- Refer to json files in the Quote folder
+- Refer to json files in the [Quote folder](https://github.com/xpertdev/tdameritrade-streaming/tree/master/Quote "Quote")
 
 Support for Docker coming soon.
 
-## Uses the tda-api Python Package
+## Dependencies
 
-https://tda-api.readthedocs.io/
+[tda-api](https://github.com/alexgolec/tda-api "tda-api")
 
-### Upgrading tda-api
+### Upgrading Dependencies
 
 If you already had tda-api installed, make sure you upgrade to the latest version!
 
@@ -36,4 +36,4 @@ pip install --upgrade -r requirements.txt
 
 https://youtube.com/parttimelarry
 
-Original code from https://github.com/hackingthemarkets/tdameritrade-streaming
+Original code: https://github.com/hackingthemarkets/tdameritrade-streaming
